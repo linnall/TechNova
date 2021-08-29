@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
+import React from "react";
+import { Text, TouchableOpacity, FlatList } from 'react-native';
 
 /* props:
     topics

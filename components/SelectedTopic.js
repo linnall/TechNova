@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import VocabCard from "./VocabCard";
 import { FlatList } from 'react-native';
 
@@ -8,10 +8,9 @@ import { FlatList } from 'react-native';
 */
 
 export default function SelectedTopic(props) {
-  const [selectedId, setSelectedId] = useState(null);
   const renderItem =  ({ item }) => {
-    const backgroundColor = item.id === selectedId ? "#5aaef2" : "#dce3e6";
-    const color = item.id === selectedId ? 'white' : 'black';
+    const backgroundColor = item.id === props.selectedItemId ? "#5aaef2" : "#dce3e6";
+    const color = item.id === props.selectedItemId ? 'white' : 'black';
 
     return (
       <VocabCard

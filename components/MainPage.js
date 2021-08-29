@@ -7,7 +7,9 @@ class MainPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedTopic: '',
+      selectedTopic: 'daily',
+      selectedTopicId: -1,
+      selectedItemId: -1,
     }
   }
 
@@ -17,7 +19,7 @@ class MainPage extends Component {
     //   .then(res => {
     //     this.setState({
     //       ...this.state,
-    //       currentWeather: res.data.consolidated_weather[0].weather_state_name
+    //       topics: res.data.topics,
     //     })
     //   }).catch(err => {
     //     console.log(err);
@@ -80,8 +82,8 @@ class MainPage extends Component {
         <View style={styles.headerContent}>
           <Text style={styles.homeTitle}>Welcome to our<Text style={styles.blueText}>TechNova</Text> app!</Text>
         </View>
-        <TopicsList data={this.state.topics} />
-        <SelectedTopic vocab={this.state['selectedTopic']} size={100} />
+        <TopicsList data={this.state.topics} selectedTopicId={this.state.selectedTopicId}/>
+        <SelectedTopic vocab={this.state[this.state.selectedTopic]} size={100} />
       </SafeAreaView>
     )
   }
@@ -98,8 +100,8 @@ const styles = StyleSheet.create({
     alignSelf: "stretch",
     justifyContent: "center",
     height: 200,
-    marginTop: 50,
-    marginBottom: 20,
+    marginTop: 10,
+    marginBottom: 10,
     backgroundColor: "#ffffff",
   },
   homeTitle: {
