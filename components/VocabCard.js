@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, StyleSheet } from 'react-native';
+import { Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Card } from 'react-native-elements';
 
 /* props:
@@ -8,15 +8,17 @@ import { Card } from 'react-native-elements';
 */
 export default function VocabCard(props) {
     return (
-        <Card containerStyle={[styles.vocabCard, {width: props.size}]}>
-            <Text style={[styles.text]}>{props.word}</Text>
-        </Card>
+        <TouchableOpacity onPress={props.onPress}>
+            <Card containerStyle={{backgroundColor: props.bgColor,width: props.size}}>
+                <Text style={[{color: props.textColor}, styles.text]}>{props.word}</Text>
+            </Card>
+        </TouchableOpacity>
     );
 }
 
 const styles = StyleSheet.create({
     vocabCard: {
-        backgroundColor: '#d3d3d3',
+        backgroundColor: '#dce3e6',
     },
     text : {
         alignItems: 'center',

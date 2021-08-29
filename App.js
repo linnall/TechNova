@@ -39,6 +39,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
+      <Text>PointTalk</Text>
       <TopicsList data={topics} />
       <SelectedTopic vocab={dailyWords} size={100} />
       <TopicsList topics={topics} />
