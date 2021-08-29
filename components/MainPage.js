@@ -13,13 +13,9 @@ class MainPage extends Component {
       topics: [],
     }
   }
-  updateSelectedTopicLabel =  function(label) {
-    console.log('updateSelectedTopicLabel', label);
-    this.setState({selectedTopicLabel: label});
-  };
 
   componentDidMount() {
-    // TODO get data from backend
+    // TODO: get data from backend
     // axios.get("/topics")
     //   .then(res => {
     //     this.setState({
@@ -115,6 +111,13 @@ class MainPage extends Component {
     var topic = this.state.topics.find(topic => topic.label === label);
     return topic? topic.title: label;
   }
+
+  updateSelectedTopicLabel = function(label) {
+    this.setState({
+      ...this.state,
+      selectedTopicLabel: label,
+    });
+  };
 
   render() {
     return (
