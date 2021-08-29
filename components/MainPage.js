@@ -14,6 +14,7 @@ class MainPage extends Component {
     }
   }
   updateSelectedTopicLabel =  function(label) {
+    console.log('updateSelectedTopicLabel', label);
     this.setState({selectedTopicLabel: label});
   };
 
@@ -45,6 +46,36 @@ class MainPage extends Component {
             id: "3",
             title: "Doctor's Visit",
             label: "doctor",
+        }
+      ],
+      doctor: [
+        {
+          id: "1",
+          en: "Cold",
+        },
+        {
+          id: "2",
+          en: "Warm",
+        },
+        {
+          id: "3",
+          en: "Pain",
+        },
+        {
+          id: "4",
+          en: "Tender",
+        },
+        {
+          id: "5",
+          en: "Headache",
+        },
+        {
+          id: "6",
+          en: "Tired",
+        },
+        {
+          id: "6",
+          en: "Sleep",
         }
       ],
       daily: [
