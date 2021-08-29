@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, TouchableOpacity, FlatList } from 'react-native';
+import { Text, StyleSheet, View, TouchableOpacity, FlatList } from 'react-native';
 
 /* props:
     topics,
@@ -13,7 +13,7 @@ function Item(props) {
                 props.updateSelectedTopicLabel(props.label);
             }}
         >
-            <Text style={{backgroundColor: props.bgColour, color: props.textColour}}>
+            <Text style={[styles.text, {backgroundColor: props.bgColour, color: props.textColour}]}>
                 {props.name}
             </Text>
         </TouchableOpacity>
@@ -25,16 +25,17 @@ export default function TopicsList(props) {
         const backgroundColor = item.label === props.selectedTopicLabel ? "#6e3b6e" : "#f9c2ff";
         const color = item.label === props.selectedTopicLabel ? 'white' : 'black';
         return (
-            <Item
-                name={item.title}
-                label={item.label}
-                bgColour={backgroundColor}
-                textColour={color}
-                updateSelectedTopicLabel={props.updateSelectedTopicLabel}
-            />
+            <View style={styles.topicList}>
+                <Item
+                    name={item.title}
+                    label={item.label}
+                    bgColour={backgroundColor}
+                    textColour={color}
+                    updateSelectedTopicLabel={props.updateSelectedTopicLabel}
+                />
+            </View>
         );
     };
-
     return (
         <FlatList
             data={props.topics}
@@ -44,3 +45,16 @@ export default function TopicsList(props) {
         />
     );
 }
+
+const styles = StyleSheet.create({
+    topicList: {
+        padding: 2,
+        marginVertical: 5,
+        marginHorizontal: 5,
+    },
+    text: {
+        fontSize: 15,
+        paddingHorizontal: "5%",
+        paddingVertical: "5%",
+    }
+  })

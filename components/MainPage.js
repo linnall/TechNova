@@ -115,6 +115,7 @@ class MainPage extends Component {
     this.setState({
       ...this.state,
       selectedTopicLabel: label,
+      selectedItemId: 0,
     });
   };
 
@@ -137,7 +138,7 @@ class MainPage extends Component {
           selectedTopicLabel={this.state.selectedTopicLabel}
         />
         <Text style={styles.homeTitle}>
-          Topic: <Text style={styles.blueText}>{this.getTopicName(this.state.selectedTopicLabel)}</Text>
+          Selected Topic: <Text style={styles.blueText}>{this.getTopicName(this.state.selectedTopicLabel)}</Text>
         </Text>
         <SelectedTopic
           vocab={this.state[this.state.selectedTopicLabel]}
