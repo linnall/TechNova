@@ -1,7 +1,129 @@
 import React, { Component } from 'react';
+import * as SQLite from 'expo-sqlite';
 import { Text, StyleSheet, SafeAreaView, View } from 'react-native';
 import SelectedTopic from './SelectedTopic';
 import TopicsList from './TopicsList';
+
+const topics = ["Alphabet", "Daily", "Doctor's Visit"];
+const cards = {
+  doctor: [
+    {
+      id: "1",
+      en: "Cold",
+    },
+    {
+      id: "2",
+      en: "Warm",
+    },
+    {
+      id: "3",
+      en: "Pain",
+    },
+    {
+      id: "4",
+      en: "Tender",
+    },
+    {
+      id: "5",
+      en: "Headache",
+    },
+    {
+      id: "6",
+      en: "Tired",
+    },
+    {
+      id: "7",
+      en: "Sleep",
+    }
+  ],
+  daily: [
+    {
+      id: "1",
+      en: "Yes",
+    },
+    {
+      id: "2",
+      en: "No",
+    },
+    {
+      id: "3",
+      en: "Ok",
+    },
+    {
+      id: "4",
+      en: "Bathroom",
+    },
+    {
+      id: "5",
+      en: "Water",
+    },
+    {
+      id: "6",
+      en: "Tired",
+    },
+    {
+      id: "7",
+      en: "Time?",
+    }
+  ],
+}
+/* open and write to database */
+// const db = SQLite.openDatabase("PointTalk");
+// db.transaction( "CREATE TABLE topics (name STRING);" )
+// .then ( () => {
+//   topics.forEach( (item) => {
+//     db.transaction( "INSERT INTO topics (name) VALUES ( ? );", [item]);
+//   });
+// })
+
+// db.transaction( "CREATE TABLE cards (title STRING, topic STRING);" )
+// .then ( () => {
+//   let i = 0;
+//   cards.forEach( (t) => {
+//     t.forEach ( (item) => {
+//       db.transaction( "INSERT INTO cards (title, topic) VALUES ( ?, ? );", [item.en, i == 1? "Daily" : "Doctor's Visit"]);
+//     });
+//     i += 1;
+//   });
+// })
+
+const db = SQLite.openDatabase("PointTalk");
+db.transaction(
+  ( tx ) => {
+    tx.executeSql( "CREATE TABLE topics (name STRING);" );
+  },
+  ( err ) => { console.log( err ); },
+  () => { console.log( "success" ); }
+)
+  .then ( () => {
+    topics.forEach( (item) => {
+      db.transaction( 
+        ( tx ) => {
+          tx.executeSql( "INSERT INTO topics (name) VALUES ( ? );", [item] );
+        }
+      );
+    });
+  })
+
+db.transaction(
+  ( tx ) => {
+    tx.executeSql( "CREATE TABLE cards (title STRING, topic STRING);" );
+  },
+  ( err ) => { console.log( err ); },
+  () => { console.log( "success" ); }
+)
+  .then ( () => {
+    let i = 0;
+    cards.forEach( (t) => {
+      t.forEach ( (item) => {
+        db.transaction( 
+          ( tx ) => { 
+            tx.executeSql("INSERT INTO cards (title, topic) VALUES ( ?, ? );", [item.en, i == 1? "Daily" : "Doctor's Visit"])} 
+        );
+      });
+      i += 1;
+    });
+  })
 
 class MainPage extends Component {
   constructor(props) {
