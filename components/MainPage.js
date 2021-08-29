@@ -7,11 +7,15 @@ class MainPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedTopic: 'daily',
+      selectedTopicLabel: 'daily',
       selectedTopicId: -1,
       selectedItemId: -1,
+      topics: [],
     }
   }
+  updateSelectedTopicLabel =  function(label) {
+    this.setState({selectedTopicLabel: label});
+  };
 
   componentDidMount() {
     // TODO get data from backend
@@ -76,14 +80,30 @@ class MainPage extends Component {
     })
   }
 
+  getTopicName = (label) => {
+    var topic = this.state.topics.find(topic => topic.label === label);
+    return topic? topic.title: label;
+  }
+
   render() {
     return (
       <SafeAreaView style={styles.scrollContainer}>
         <View style={styles.headerContent}>
-          <Text style={styles.homeTitle}>Welcome to our<Text style={styles.blueText}>TechNova</Text> app!</Text>
+          <Text style={styles.homeTitle}>Welcome to our <Text style={styles.blueText}>TechNova</Text> app!</Text>
         </View>
-        <TopicsList data={this.state.topics} selectedTopicId={this.state.selectedTopicId}/>
-        <SelectedTopic vocab={this.state[this.state.selectedTopic]} size={100} />
+        <TopicsList
+          topics={this.state.topics}
+          updateSelectedTopicLabel={this.updateSelectedTopicLabel.bind(this)}
+          selectedTopicId={this.state.selectedTopicId}
+        />
+        <Text style={styles.homeTitle}>
+          Topic: <Text style={styles.blueText}>{this.getTopicName(this.state.selectedTopicLabel)}</Text>
+        </Text>
+        <SelectedTopic
+          vocab={this.state[this.state.selectedTopicLabel]}
+          stateChanger={this.setState}
+          size={100}
+        />
       </SafeAreaView>
     )
   }
@@ -111,12 +131,6 @@ const styles = StyleSheet.create({
   blueText: {
     color: "blue"
   },
-  weatherText: {
-    textAlign: "center",
-    fontSize: 18,
-    marginTop: 30,
-    marginBottom: 50
-  }
 })
 
 export default MainPage;

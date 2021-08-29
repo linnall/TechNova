@@ -21,17 +21,19 @@ export default function TopicsList(props) {
     const renderItem =  ({ item }) => {
         const backgroundColor = item.id === props.selectedTopicId ? "#6e3b6e" : "#f9c2ff";
         const color = item.id === props.selectedTopicId ? 'white' : 'black';
-
         return (
             <Item name={item.title} bgColour={backgroundColor} textColour={color}/>
         );
-    }
+    };
+    const setSelectedTopicLabel = ( (label) => {
+        props.stateChanger({selectedTopicLabel: label});
+    });
     return (
         <FlatList
             data={props.topics}
             renderItem={renderItem}
-            onPress={() => setSelectedId(item.id)}
-            keyExtractor={(item) => item.id}
+            onPress={() => updateSelectedTopicLabel(item.id)}
+            keyExtractor={(item) => item.label}
             extraData={props.selectedTopicId}
         />
     );

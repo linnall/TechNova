@@ -27,7 +27,7 @@ export default function SelectedTopic(props) {
     numColumns='3'
     data={props.vocab}
     renderItem={renderItem}
-    onPress={() => setSelectedId(item.id)}
+    onPress={() => (item.id)}
   />
   );
 }
