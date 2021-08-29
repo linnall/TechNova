@@ -20,6 +20,7 @@ export default function SelectedTopic(props) {
         bgColor={backgroundColor}
         textColor={color}
         size={props.size}
+        selectedItemId={props.selectedItemId}
         updateSelectedItemId={props.updateSelectedItemId}
       />
     );

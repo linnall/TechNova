@@ -11,7 +11,11 @@ export default function VocabCard(props) {
     return (
         <TouchableOpacity
             onPress={() => {
-                props.updateSelectedItemId(props.id);
+                if (props.selectedItemId === 0) {
+                    props.updateSelectedItemId(props.id);
+                } else {
+                    props.updateSelectedItemId(0);
+                }
             }}
         >
             <Card containerStyle={{backgroundColor: props.bgColor, width: props.size}}>
