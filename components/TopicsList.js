@@ -18,10 +18,9 @@ function Item(props) {
 }
 
 export default function TopicsList(props) {
-    const [selectedId, setSelectedId] = useState(null);
     const renderItem =  ({ item }) => {
-        const backgroundColor = item.id === selectedId ? "#6e3b6e" : "#f9c2ff";
-        const color = item.id === selectedId ? 'white' : 'black';
+        const backgroundColor = item.id === props.selectedTopicId ? "#6e3b6e" : "#f9c2ff";
+        const color = item.id === props.selectedTopicId ? 'white' : 'black';
 
         return (
             <Item name={item.title} bgColour={backgroundColor} textColour={color}/>
@@ -33,7 +32,7 @@ export default function TopicsList(props) {
             renderItem={renderItem}
             onPress={() => setSelectedId(item.id)}
             keyExtractor={(item) => item.id}
-            extraData={selectedId}
+            extraData={props.selectedTopicId}
         />
     );
 }
