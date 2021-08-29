@@ -9,7 +9,7 @@ import { Card } from 'react-native-elements';
 export default function VocabCard(props) {
     return (
         <TouchableOpacity onPress={props.onPress}>
-            <Card containerStyle={{backgroundColor: props.bgColor,width: props.size}}>
+            <Card containerStyle={{backgroundColor: props.bgColor, width: props.size}}>
                 <Text style={[{color: props.textColor}, styles.text]}>{props.word}</Text>
             </Card>
         </TouchableOpacity>

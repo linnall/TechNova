@@ -19,6 +19,7 @@ export default function SelectedTopic(props) {
         word={item.en}
         bgColor={backgroundColor}
         textColor={color}
+        size={props.size}
       />
     );
   }
