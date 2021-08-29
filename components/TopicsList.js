@@ -2,7 +2,8 @@ import React from "react";
 import { Text, TouchableOpacity, FlatList } from 'react-native';
 
 /* props:
-    topics
+    topics,
+    updateSelectedTopicLabel,
 */
 
 function Item(props) {
@@ -21,8 +22,8 @@ function Item(props) {
 
 export default function TopicsList(props) {
     const renderItem =  ({ item }) => {
-        const backgroundColor = item.id === props.selectedTopicId ? "#6e3b6e" : "#f9c2ff";
-        const color = item.id === props.selectedTopicId ? 'white' : 'black';
+        const backgroundColor = item.label === props.selectedTopicLabel ? "#6e3b6e" : "#f9c2ff";
+        const color = item.label === props.selectedTopicLabel ? 'white' : 'black';
         return (
             <Item
                 name={item.title}

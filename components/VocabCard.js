@@ -4,13 +4,19 @@ import { Card } from 'react-native-elements';
 
 /* props:
     word,
-    size
+    size,
+    updateSelectedItemId,
 */
 export default function VocabCard(props) {
     return (
-        <TouchableOpacity onPress={props.onPress}>
+        <TouchableOpacity
+            onPress={() => {
+                console.log(props.key);
+                // props.updateSelectedItemId(props.key);
+            }}
+        >
             <Card containerStyle={{backgroundColor: props.bgColor, width: props.size}}>
-                <Text style={[{color: props.textColor}, styles.text]}>{props.word}</Text>
+                <Text style={[{color: props.textColor}, styles.text]}>{props.text}</Text>
             </Card>
         </TouchableOpacity>
     );

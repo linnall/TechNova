@@ -15,10 +15,11 @@ export default function SelectedTopic(props) {
     return (
       <VocabCard
         keyExtractor={(item) => item.id}
-        word={item.en}
+        text={item.en}
         bgColor={backgroundColor}
         textColor={color}
         size={props.size}
+        // updateSelectedItemId={props.updateSelectedItemId}
       />
     );
   }

@@ -8,8 +8,7 @@ class MainPage extends Component {
     super(props);
     this.state = {
       selectedTopicLabel: 'daily',
-      selectedTopicId: -1,
-      selectedItemId: -1,
+      selectedItemId: "0",
       topics: [],
     }
   }
@@ -119,6 +118,13 @@ class MainPage extends Component {
     });
   };
 
+  updateSelectedItemId = function(id) {
+    this.setState({
+      ...this.state,
+      selectedItemId: id,
+    });
+  };
+
   render() {
     return (
       <SafeAreaView style={styles.scrollContainer}>
@@ -128,14 +134,15 @@ class MainPage extends Component {
         <TopicsList
           topics={this.state.topics}
           updateSelectedTopicLabel={this.updateSelectedTopicLabel.bind(this)}
-          selectedTopicId={this.state.selectedTopicId}
+          selectedTopicLabel={this.state.selectedTopicLabel}
         />
         <Text style={styles.homeTitle}>
           Topic: <Text style={styles.blueText}>{this.getTopicName(this.state.selectedTopicLabel)}</Text>
         </Text>
         <SelectedTopic
           vocab={this.state[this.state.selectedTopicLabel]}
-          stateChanger={this.setState}
+          // updateSelectedItemId={this.updateSelectedItemId.bind(this)}
+          selectedItemId={this.state.selectedItemId}
           size={100}
         />
       </SafeAreaView>
