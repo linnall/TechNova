@@ -69,7 +69,7 @@ class MainPage extends Component {
           en: "Tired",
         },
         {
-          id: "6",
+          id: "7",
           en: "Sleep",
         }
       ],
@@ -99,7 +99,7 @@ class MainPage extends Component {
           en: "Tired",
         },
         {
-          id: "6",
+          id: "7",
           en: "Time?",
         }
       ],
@@ -141,7 +141,7 @@ class MainPage extends Component {
         </Text>
         <SelectedTopic
           vocab={this.state[this.state.selectedTopicLabel]}
-          // updateSelectedItemId={this.updateSelectedItemId.bind(this)}
+          updateSelectedItemId={this.updateSelectedItemId.bind(this)}
           selectedItemId={this.state.selectedItemId}
           size={100}
         />
